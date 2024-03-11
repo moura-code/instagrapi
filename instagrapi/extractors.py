@@ -312,7 +312,10 @@ def extract_reply_message(data):
 
     data["timestamp"] = datetime.datetime.fromtimestamp(data["timestamp"] // 1_000_000)
     data["user_id"] = str(data["user_id"])
-
+    
+    if isinstance(data["timestamp"],int):
+        if data["timestamp"] > 999:
+            data["timestamp"] = 1 
     return ReplyMessage(**data)
 
 
